@@ -28,6 +28,54 @@
 pip install tkcalendar holidays
 ```
 
+---
+## Kompilierung zu einer EXE (Windows)
+
+Du kannst das Skript mit [PyInstaller](https://www.pyinstaller.org/) zu einer eigenständigen Windows-EXE kompilieren, die ohne Python-Installation läuft.
+
+### 1. Voraussetzungen
+
+- Python 3.x installiert
+- Alle benötigten Pakete installiert:
+
+```bash
+pip install tkcalendar holidays pyinstaller
+```
+
+
+### 2. Kompilierung
+
+**Wichtig:**
+Das Paket `holidays` lädt einige Unterpakete dynamisch. Damit alles korrekt funktioniert, müssen diese bei der Kompilierung explizit angegeben werden.
+
+Führe im Ordner deines Skripts folgenden Befehl aus:
+
+```bash
+pyinstaller --noconsole --onefile ^
+  --hidden-import=holidays ^
+  --hidden-import=holidays.utils ^
+  --hidden-import=holidays.calendars ^
+  --hidden-import=holidays.countries ^
+  --hidden-import=holidays.groups ^
+  tage_rechner.py
+```
+
+*(Bei Linux/MacOS entferne die `^` am Zeilenende oder schreibe alles in eine Zeile)*
+
+**Erklärung:**
+
+- `--noconsole`: Kein Konsolenfenster (empfohlen für reine GUI-Programme)
+- `--onefile`: Eine einzige ausführbare Datei
+- `--hidden-import=...`: Bindet dynamisch geladene Module von `holidays` mit ein
+
+Nach erfolgreicher Kompilierung findest du die ausführbare Datei im Unterordner `dist`.
+
+### 3. Hinweise
+
+- Teste die EXE auf einem System ohne Python-Installation, um sicherzugehen, dass alle Abhängigkeiten enthalten sind.
+- Für ein eigenes Icon kannst du die Option `--icon=deinicon.ico` ergänzen.
+
+---
 
 ## Verwendung
 
@@ -51,6 +99,7 @@ python daysbetween.py
     - **Beenden**: Schließt das Programm.
 
 ## Beispiel-Screenshot
+![alt text](screenshot/Screenshot.png)
 
 ## Beispiel-Ergebnis
 
@@ -61,7 +110,7 @@ Gesamtzahl der Tage: 31
 Arbeitstage (inkl. Samstag): 27
 
 Berücksichtigte Feiertage im Zeitraum:
-01.05.2025: Tag der Arbeit
+01.05.2025: Erster Mai
 29.05.2025: Christi Himmelfahrt
 ```
 
