@@ -107,7 +107,7 @@ python daysbetween.py
 Zeitraum: 01.05.2025 bis 31.05.2025 (inklusive Enddatum)
 Bundesland: Saarland
 Gesamtzahl der Tage: 31
-Arbeitstage (inkl. Samstag): 27
+Arbeitstage: 20
 
 Berücksichtigte Feiertage im Zeitraum:
 01.05.2025: Erster Mai
@@ -141,7 +141,7 @@ Vorschläge, Fehlerberichte oder Pull Requests sind jederzeit willkommen!
 
 ## Autor
 
-Erstellt von [Dein Name]
+Erstellt von Dieter Eckstein
 Letztes Update: Juli 2025
 
 **Viel Freude mit dem Tage-Rechner!**
