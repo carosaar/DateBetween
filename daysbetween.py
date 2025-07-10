@@ -92,7 +92,8 @@ def show_info():
         "• Samstage als Arbeitstage wählbar\n"
         "• Feiertage werden angezeigt (nur über den Button)\n"
         "• Ergebnis kann kopiert werden\n"
-        "• Doppelklick auf ein Datumsfeld trägt das heutige Datum ein"
+        "• Doppelklick auf ein Datumsfeld trägt das heutige Datum ein\n\n"
+        "Erstellt von Dieter Eckstein 2025"
     )
     messagebox.showinfo("Information", info_text)
 
