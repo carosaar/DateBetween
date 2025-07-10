@@ -2,12 +2,28 @@
 
 ## Übersicht
 
-**Tage-Rechner** ist ein komfortables Python-Tool mit grafischer Oberfläche zur Berechnung von Gesamt- und Arbeitstagen zwischen zwei beliebigen Daten. Es berücksichtigt Wochenenden und alle gesetzlichen Feiertage für ein auswählbares deutsches Bundesland. Das Programm bietet viele Komfortfunktionen für den täglichen Einsatz in Büro, Verwaltung, Projektmanagement oder der privaten Planung.
+**Tage-Rechner** ist ein komfortables Tool zur Berechnung von Gesamt- und Arbeitstagen zwischen zwei beliebigen Daten. Es berücksichtigt Wochenenden und alle gesetzlichen Feiertage für ein auswählbares deutsches Bundesland. Das Programm bietet viele Komfortfunktionen für den täglichen Einsatz in Büro, Verwaltung, Projektmanagement oder der privaten Planung.
+
+## Verfügbare Versionen
+
+Das Tool ist in zwei Varianten verfügbar:
+
+### 1. Python-Version (desktop-basiert)
+- **Moderne grafische Oberfläche mit Tkinter**
+- **Native Desktop-Anwendung für Windows, macOS und Linux**
+- **Optimiert für den lokalen Einsatz**
+
+### 2. HTML-Version (web-basiert)
+- **Plattformübergreifend im Browser nutzbar**
+- **Kein Installation erforderlich**
+- **Verfügbar im Verzeichnis `html-js`**
+- **Funktioniert auf allen Geräten mit modernem Webbrowser**
+- **Ideal für mobile Geräte, Tablets und verschiedene Betriebssysteme**
 
 ## Features
 
-- **Einfache Bedienung über eine moderne grafische Oberfläche (Tkinter)**
-- **Datumsauswahl per Kalender (tkcalendar.DateEntry)**
+- **Einfache Bedienung über eine moderne Benutzeroberfläche**
+- **Datumsauswahl per Kalender**
 - **Berücksichtigung aller gesetzlichen Feiertage des gewählten Bundeslands (über das [holidays](https://pypi.org/project/holidays/)-Paket)**
 - **Option, das Enddatum einzuschließen**
 - **Option, Samstage als Arbeitstage zu zählen**
@@ -17,8 +33,11 @@
 - **Automatische Ergänzung des aktuellen Jahres bei Eingabe im Format TT.MM**
 - **Anzeige der Anzahl der berücksichtigten Feiertage im Ergebnisbereich**
 
+## Installation und Verwendung
 
-## Installation
+### Python-Version
+
+#### Installation
 
 1. **Python 3.7 oder neuer installieren**
 2. **Benötigte Pakete installieren:**
@@ -27,8 +46,7 @@
 pip install tkcalendar holidays pyinstaller
 ```
 
-
-## Verwendung
+#### Verwendung
 
 1. **Skript starten:**
 
@@ -42,16 +60,38 @@ python daysbetween.py
     - **Optionen**:
         - **Enddatum inklusive**: Das Enddatum wird bei der Berechnung mitgezählt.
         - **Samstage als Arbeitstage**: Samstage werden als Werktage gewertet.
-    - **Berechnen**: Auf „▶️ Ausführen“ klicken.
+    - **Berechnen**: Auf „▶️ Ausführen" klicken.
     - **Feiertage anzeigen**: Zeigt alle im Zeitraum berücksichtigten Feiertage in einem eigenen Fenster.
     - **Kopieren**: Das Ergebnis wird in die Zwischenablage kopiert.
     - **Doppelklick** auf ein Datumsfeld trägt das heutige Datum ein.
     - **Info**: Zeigt eine Kurzanleitung.
     - **Beenden**: Schließt das Programm.
 
+### HTML-Version
+
+#### Installation
+
+Keine Installation erforderlich! Die HTML-Version befindet sich im Verzeichnis `html-js` und kann direkt im Browser geöffnet werden.
+
+#### Verwendung
+
+1. **Öffnen Sie die Datei `index.html` aus dem Verzeichnis `html-js` in einem modernen Webbrowser**
+2. **Die Bedienung erfolgt analog zur Python-Version über die webbasierte Benutzeroberfläche**
+
+#### Plattformübergreifende Nutzung
+
+Die HTML-Version bietet maximale Flexibilität:
+
+- **Desktop-Computer**: Windows, macOS, Linux – alle Browser
+- **Mobile Geräte**: Smartphones und Tablets (iOS, Android)
+- **Embedded Systems**: Raspberry Pi, andere Single-Board-Computer
+- **Chromebooks**: Native Unterstützung ohne zusätzliche Software
+- **Unternehmensumgebungen**: Funktioniert auch in restriktiven IT-Umgebungen
+- **Offline-Nutzung**: Funktioniert auch ohne Internetverbindung nach dem ersten Laden
+
 ## Kompilierung zu einer EXE (Windows)
 
-Du kannst das Skript mit [PyInstaller](https://www.pyinstaller.org/) zu einer eigenständigen Windows-EXE kompilieren, die ohne Python-Installation läuft.
+Du kannst das Python-Skript mit [PyInstaller](https://www.pyinstaller.org/) zu einer eigenständigen Windows-EXE kompilieren, die ohne Python-Installation läuft.
 
 **Wichtig:**
 Das Paket `holidays` lädt einige Unterpakete dynamisch. Damit alles korrekt funktioniert, müssen diese bei der Kompilierung explizit angegeben werden.
@@ -81,7 +121,10 @@ Das bedeutet:
 Weitere Informationen findest du in der [holidays-Dokumentation](https://github.com/dr-prodigy/python-holidays/blob/master/holidays/countries/germany.py).
 
 ## Beispiel-Screenshot
+### Desktop-VERSION
 ![alt text](screenshot/Screenshot.png)
+### WEB-VERSION
+![alt text](screenshot/Screenshot-html.jpeg)
 
 ## Beispiel-Ergebnis
 
@@ -93,15 +136,27 @@ Arbeitstage: 20
 Anzahl der Feiertage: 2
 ```
 
-
 ## Hinweise
 
 - **Format der Datumsangabe:** TT.MM.JJJJ oder TT.MM (das aktuelle Jahr wird ergänzt)
 - **Feiertage:** Es werden alle offiziellen Feiertage des gewählten Bundeslands berücksichtigt, aber nur ab 3.10.1990.
 - **Enddatum:** Standardmäßig exklusiv (nicht mitgezählt), kann aber per Option einbezogen werden.
 - **Samstage:** Können per Option als Arbeitstage behandelt werden.
-- **Feiertagsliste:** Über den Button „Feiertage anzeigen“ jederzeit abrufbar.
+- **Feiertagsliste:** Über den Button „Feiertage anzeigen" jederzeit abrufbar.
 
+## Welche Version wählen?
+
+**Python-Version:**
+- Optimal für regelmäßige Nutzung am Desktop
+- Bessere Performance bei häufiger Verwendung
+- Native Betriebssystem-Integration
+
+**HTML-Version:**
+- Ideal für gelegentliche Nutzung
+- Perfekt für mobile Geräte
+- Keine Installation erforderlich
+- Universell einsetzbar auf allen Plattformen
+- Einfache Weitergabe und Verteilung
 
 ## Lizenz
 
@@ -121,4 +176,3 @@ Letztes Update: Juli 2025
 <div style="text-align: center">⁂</div>
 
 [^1]: daysbetween.py
-
