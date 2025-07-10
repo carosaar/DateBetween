@@ -5,63 +5,164 @@
   <title>Tage-Rechner</title>
   <meta name="viewport" content="width=500, initial-scale=1">
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    label { margin-top: 10px; display: block; }
-    input, select { margin-bottom: 10px; }
-    #result { background: #f5f5f5; border: 1px solid #ccc; padding: 10px; min-height: 100px; margin-top: 15px; white-space: pre-line; }
-    .btn-row { margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
-    button { font-size: 1.1em; padding: 6px 12px; border-radius: 5px; border: 1px solid #bbb; background: #f0f0f0; cursor: pointer; }
-    button:active { background: #e0e0e0; }
-    #modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
-    #modal { background: white; width: 350px; max-width: 95vw; max-height: 80vh; overflow-y: auto; margin: 60px auto; padding: 20px; border-radius: 8px; position: relative; }
-    #modal-close { position: absolute; right: 10px; top: 8px; font-size: 1.2em; cursor: pointer; background: none; border: none; }
-    @media (max-width: 600px) {
-      body { margin: 5px; }
-      #modal { width: 98vw; margin: 10vw auto; }
+    body { 
+      font-family: system-ui, Arial, sans-serif; 
+      background: #fafbfc; 
+      color: #222; 
+      margin: 0; 
+      padding: 0; 
+    }
+    .container { 
+      max-width: 420px; 
+      margin: 32px auto 0 auto; 
+      background: #fff; 
+      border-radius: 14px; 
+      box-shadow: 0 4px 24px rgba(25, 118, 210, 0.07); 
+      padding: 24px 18px 18px 18px; 
+    }
+    h2 { 
+      color: #1976d2; 
+      text-align: center; 
+      margin-top: 0; 
+      margin-bottom: 20px; 
+    }
+    label { 
+      display: block; 
+      margin: 14px 0 5px 0; 
+      font-weight: 500; 
+    }
+    input[type="date"], select { 
+      width: 100%; 
+      padding: 7px 8px; 
+      border: 1px solid #e3e6ea; 
+      border-radius: 6px; 
+      font-size: 1em; 
+      background: #f5f7fa; 
+      margin-bottom: 4px; 
+      box-sizing: border-box;
+    }
+    input[type="checkbox"] { 
+      margin-right: 6px; 
+    }
+    .btn-row { 
+      display: flex; 
+      gap: 8px; 
+      margin-top: 18px; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+    }
+    button { 
+      background: #1976d2; 
+      color: #fff; 
+      border: none; 
+      border-radius: 7px; 
+      padding: 8px 14px; 
+      font-size: 1.08em; 
+      font-weight: 500; 
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08); 
+      cursor: pointer; 
+      transition: background 0.15s, box-shadow 0.15s; 
+      margin-bottom: 6px; 
+    }
+    button:hover, button:focus { 
+      background: #1561a9; 
+      box-shadow: 0 4px 16px rgba(25, 118, 210, 0.13); 
+      outline: none; 
+    }
+    #result { 
+      background: #f5f7fa; 
+      border: 1px solid #e3e6ea; 
+      border-radius: 7px; 
+      padding: 14px 12px; 
+      margin-top: 20px; 
+      min-height: 90px; 
+      font-size: 1.07em; 
+      line-height: 1.5; 
+      white-space: pre-line; 
+    }
+    #modal-bg { 
+      display: none; 
+      position: fixed; 
+      inset: 0; 
+      background: rgba(25, 118, 210, 0.13); 
+      z-index: 99; 
+    }
+    #modal { 
+      background: white; 
+      width: 350px; 
+      max-width: 95vw; 
+      max-height: 80vh; 
+      overflow-y: auto; 
+      margin: 60px auto; 
+      padding: 20px; 
+      border-radius: 10px; 
+      position: relative; 
+      box-shadow: 0 4px 32px rgba(25, 118, 210, 0.12); 
+    }
+    #modal h3 { 
+      color: #1976d2; 
+      margin-top: 0; 
+    }
+    #modal-close { 
+      position: absolute; 
+      right: 10px; 
+      top: 8px; 
+      font-size: 1.2em; 
+      cursor: pointer; 
+      background: none; 
+      border: none; 
+    }
+    @media (max-width: 500px) {
+      .container { 
+        max-width: 98vw; 
+        padding: 12px 4vw 12px 4vw; 
+      }
     }
   </style>
   <!-- Keine externe Bibliothek mehr nötig -->
 
 </head>
 <body>
-  <h2>Tage-Rechner</h2>
-  <label for="start-date">Startdatum:
-    <input type="date" id="start-date">
-  </label>
-  <label for="end-date">Enddatum:
-    <input type="date" id="end-date">
-  </label>
-  <label for="state">Bundesland:
-    <select id="state">
-      <option value="BW">Baden-Württemberg</option>
-      <option value="BY">Bayern</option>
-      <option value="BE">Berlin</option>
-      <option value="BB">Brandenburg</option>
-      <option value="HB">Bremen</option>
-      <option value="HH">Hamburg</option>
-      <option value="HE">Hessen</option>
-      <option value="MV">Mecklenburg-Vorpommern</option>
-      <option value="NI">Niedersachsen</option>
-      <option value="NW">Nordrhein-Westfalen</option>
-      <option value="RP">Rheinland-Pfalz</option>
-      <option value="SL">Saarland</option>
-      <option value="SN">Sachsen</option>
-      <option value="ST">Sachsen-Anhalt</option>
-      <option value="SH">Schleswig-Holstein</option>
-      <option value="TH">Thüringen</option>
-    </select>
-  </label>
-  <label><input type="checkbox" id="include-end"> Enddatum inklusive</label>
-  <label><input type="checkbox" id="count-saturday"> Samstage als Arbeitstage</label>
+  <div class="container">
+    <h2>Tage-Rechner</h2>
+    <label for="start-date">Startdatum:
+      <input type="date" id="start-date">
+    </label>
+    <label for="end-date">Enddatum:
+      <input type="date" id="end-date">
+    </label>
+    <label for="state">Bundesland:
+      <select id="state">
+        <option value="BW">Baden-Württemberg</option>
+        <option value="BY">Bayern</option>
+        <option value="BE">Berlin</option>
+        <option value="BB">Brandenburg</option>
+        <option value="HB">Bremen</option>
+        <option value="HH">Hamburg</option>
+        <option value="HE">Hessen</option>
+        <option value="MV">Mecklenburg-Vorpommern</option>
+        <option value="NI">Niedersachsen</option>
+        <option value="NW">Nordrhein-Westfalen</option>
+        <option value="RP">Rheinland-Pfalz</option>
+        <option value="SL">Saarland</option>
+        <option value="SN">Sachsen</option>
+        <option value="ST">Sachsen-Anhalt</option>
+        <option value="SH">Schleswig-Holstein</option>
+        <option value="TH">Thüringen</option>
+      </select>
+    </label>
+    <label><input type="checkbox" id="include-end"> Enddatum inklusive</label>
+    <label><input type="checkbox" id="count-saturday"> Samstage als Arbeitstage</label>
 
-  <div class="btn-row">
-    <button id="calculate">▶️ Ausführen</button>
-    <button id="show-holidays">📅 Feiertage</button>
-    <button id="copy">📋 Kopieren</button>
-    <button id="info">ℹ️ Info</button>
+    <div class="btn-row">
+      <button id="calculate">▶️ Ausführen</button>
+      <button id="show-holidays">📅 Feiertage</button>
+      <button id="copy">📋 Kopieren</button>
+      <button id="info">ℹ️ Info</button>
+    </div>
+
+    <div id="result"></div>
   </div>
-
-  <div id="result"></div>
 
   <!-- Modal für Feiertage -->
   <div id="modal-bg">
@@ -216,7 +317,7 @@
     lastHolidayList = feiertageListe;
 
     let resultText =
-      `Zeitraum: ${formatDate(start)} bis ${formatDate(end)} (${includeEnd ? 'inklusive' : 'exklusive'} Enddatum)\n` +
+      `Zeitraum: ${formatDate(start)} bis ${formatDate(end)} (${includeEnd ? 'inklusiv' : 'exklusiv'})\n` +
       `Bundesland: ${stateNames[state]}\n` +
       `Gesamtzahl der Tage: ${deltaDays}\n` +
       `Arbeitstage${countSaturday ? ' (inkl. Samstag)' : ''}: ${workdays}\n` +
